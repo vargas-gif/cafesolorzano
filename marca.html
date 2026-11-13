@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café Solórzano | Café Artesanal de Origen</title>
-    <!-- Importación de fuente Montserrat -->
+    <!-- Tipografía Montserrat y Playfair Display -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -69,7 +69,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
             align-items: center;
         }
@@ -77,7 +77,7 @@
         .nav-links a {
             color: #D6CEC9;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -91,13 +91,9 @@
         .nav-btn {
             background: var(--dorado) !important;
             color: var(--cafe-oscuro) !important;
-            padding: 0.6rem 1.4rem !important;
+            padding: 0.5rem 1.2rem !important;
             border-radius: 4px;
             font-weight: 600 !important;
-        }
-
-        .nav-btn:hover {
-            background: #FFFFFF !important;
         }
 
         /* Hero Header */
@@ -147,7 +143,7 @@
             border-radius: 4px;
             font-weight: 600;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: all 0.3s ease;
@@ -159,9 +155,35 @@
             transform: translateY(-2px);
         }
 
-        /* Secciones */
+        /* Barra de Sellos / Iconos de Trazabilidad */
+        .trazabilidad-bar {
+            background: var(--cafe-oscuro);
+            color: #FFFFFF;
+            padding: 2.5rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--dorado);
+        }
+
+        .sello-item h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--dorado);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .sello-item p {
+            font-size: 0.8rem;
+            color: #D6CEC9;
+        }
+
+        /* Secciones Generales */
         section {
-            padding: 7rem 8%;
+            padding: 6rem 8%;
             max-width: 1300px;
             margin: 0 auto;
         }
@@ -217,13 +239,75 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
 
-        /* Perfiles de Café (Organizados sin burbujas confusas) */
-        .productos-section {
+        /* Proceso: De la Cereza a la Taza */
+        .proceso-section {
             background-color: #FFFFFF;
             border-top: 1px solid var(--borde-sutil);
             border-bottom: 1px solid var(--borde-sutil);
         }
 
+        .proceso-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .proceso-card {
+            background: var(--crema-bg);
+            border: 1px solid var(--borde-sutil);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .proceso-numero {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dorado);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .proceso-card h4 {
+            font-size: 0.95rem;
+            color: var(--cafe-oscuro);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .proceso-card p {
+            font-size: 0.85rem;
+            color: var(--texto-secundario);
+        }
+
+        /* Propósito y Sostenibilidad */
+        .sostenibilidad-box {
+            background: linear-gradient(135deg, #2B211D, #43322B);
+            color: #FFFFFF;
+            padding: 4rem;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .sostenibilidad-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dorado);
+        }
+
+        .sostenibilidad-box p {
+            color: #E2DBD6;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Perfiles de Café */
         .grid-productos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -231,16 +315,16 @@
         }
 
         .card-producto {
-            background: var(--crema-bg);
+            background: var(--crema-card);
             border: 1px solid var(--borde-sutil);
             border-radius: 8px;
             padding: 2.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
         }
 
         .card-producto:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(35, 22, 16, 0.06);
             border-color: var(--dorado);
         }
 
@@ -257,7 +341,6 @@
             margin-bottom: 2rem;
         }
 
-        /* Ficha Técnica Clara y Ordenada (Reemplaza las burbujas) */
         .ficha-tecnica {
             border-top: 1px solid var(--borde-sutil);
             padding-top: 1.5rem;
@@ -283,6 +366,40 @@
         .ficha-value {
             color: var(--texto-secundario);
             font-weight: 500;
+        }
+
+        /* Testimonios e Alianzas Institucionales */
+        .testimonios-section {
+            background-color: #FFFFFF;
+            border-top: 1px solid var(--borde-sutil);
+            border-bottom: 1px solid var(--borde-sutil);
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonio-card {
+            background: var(--crema-bg);
+            border-left: 3px solid var(--dorado);
+            padding: 2rem;
+            border-radius: 4px;
+            font-style: italic;
+            color: var(--texto-secundario);
+            font-size: 0.9rem;
+        }
+
+        .testimonio-card cite {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--cafe-oscuro);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Contacto */
@@ -320,7 +437,7 @@
         }
 
         @media (max-width: 900px) {
-            .grid-origen {
+            .grid-origen, .sostenibilidad-box {
                 grid-template-columns: 1fr;
             }
             .nav-links {
@@ -339,18 +456,40 @@
         </a>
         <ul class="nav-links">
             <li><a href="#origen">Origen</a></li>
+            <li><a href="#proceso">Proceso</a></li>
             <li><a href="#productos">Perfiles</a></li>
+            <li><a href="#alianzas">Alianzas</a></li>
             <li><a href="#contacto" class="nav-btn">Contacto</a></li>
         </ul>
     </nav>
 
     <!-- Hero Header -->
     <header class="hero">
-        <span class="hero-badge">Vereda Berlín &bull; Quipile</span>
+        <span class="hero-badge">Vereda Berlín &bull; Quipile, Cundinamarca</span>
         <h1>Tradición Familiar en Cada Grano</h1>
         <p>Cultivado pacientemente a 1.810 metros de altura en un microclima privilegiado del Tequendama.</p>
         <a href="#productos" class="btn-principal">Conocer perfiles</a>
     </header>
+
+    <!-- Barra de Iconos y Trazabilidad -->
+    <div class="trazabilidad-bar">
+        <div class="sello-item">
+            <h4>100% Arábica</h4>
+            <p>Selección de grano puro</p>
+        </div>
+        <div class="sello-item">
+            <h4>1.810 m.s.n.m.</h4>
+            <p>Altitud de alta montaña</p>
+        </div>
+        <div class="sello-item">
+            <h4>Cosecha Manual</h4>
+            <p>Recolección selectiva en finca</p>
+        </div>
+        <div class="sello-item">
+            <h4>Tueste Artesanal</h4>
+            <p>Control exacto de perfiles</p>
+        </div>
+    </div>
 
     <!-- Sección Origen -->
     <section id="origen">
@@ -363,21 +502,63 @@
             <div class="origen-text">
                 <h3>Un café honesto desde la montaña</h3>
                 <p>En Café Solórzano creemos que el verdadero valor de un café de especialidad radica en su transparencia. Bajo la dirección de Don Jaime A. Solórzano, cada lote es cultivado, recolectado a mano y procesado respetando los ciclos naturales de la tierra.</p>
-                <p>Nuestra ubicación a 1.810 m.s.n.m. permite una maduración lenta de la cereza del café, logrando una concentración óptima de azúcares que se traduce en una taza limpia, compleja y llena de identidad.</p>
+                <p>Nuestra ubicación permite una maduración lenta de la cereza del café, logrando una concentración óptima de azúcares naturales que se traduce en una taza limpia, compleja y llena de identidad.</p>
             </div>
             <div class="origen-img" style="background-image: url('Paisaje del Café Solórzano al Amanecer.png');"></div>
         </div>
     </section>
 
-    <!-- Sección Perfiles (Rediseñada y Organizada) -->
-    <section id="productos" class="productos-section">
+    <!-- Indicador de Proceso: De la Cereza a la Taza -->
+    <section id="proceso" class="proceso-section">
+        <div class="section-header">
+            <span class="section-subtitle">Trazabilidad</span>
+            <h2 class="section-title">De la Cereza a la Taza</h2>
+        </div>
+        
+        <div class="proceso-grid">
+            <div class="proceso-card">
+                <div class="proceso-numero">01</div>
+                <h4>Cultivo y Cosecha</h4>
+                <p>Selección rigurosa y manual de los granos maduros en los suelos volcánicos de Quipile a 1.810 m.s.n.m.</p>
+            </div>
+            <div class="proceso-card">
+                <div class="proceso-numero">02</div>
+                <h4>Beneficio y Secado</h4>
+                <p>Proceso controlado de lavado y secado al sol para preservar los atributos naturales y aceites del grano.</p>
+            </div>
+            <div class="proceso-card">
+                <div class="proceso-numero">03</div>
+                <h4>Tueste Artesanal</h4>
+                <p>Curva de tueste medida con precisión para potenciar notas aromáticas únicas a panela, vainilla y chocolate.</p>
+            </div>
+            <div class="proceso-card">
+                <div class="proceso-numero">04</div>
+                <h4>Empaque y Entrega</h4>
+                <p>Sellado hermético con válvula desgasificadora para garantizar frescura absoluta directo en tu hogar o negocio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bloque de Propósito y Sostenibilidad -->
+    <section>
+        <div class="sostenibilidad-box">
+            <div>
+                <h3>Compromiso y Sostenibilidad</h3>
+                <p>Entendemos la caficultura como un legado vivo. Protegemos los recursos hídricos de la Vereda Berlín y fomentamos prácticas agrícolas responsables que cuidan la biodiversidad de la región del Tequendama.</p>
+                <p>Apoyar a Café Solórzano es apostar por el desarrollo rural justo y el trabajo familiar honesto.</p>
+            </div>
+            <div class="origen-img" style="height: 280px; background-image: url('Terraza Café Solorzano al Atardecer.png'); border-radius: 6px;"></div>
+        </div>
+    </section>
+
+    <!-- Perfiles de Café -->
+    <section id="productos" style="background-color: #FFFFFF;">
         <div class="section-header">
             <span class="section-subtitle">Portafolio</span>
             <h2 class="section-title">Perfiles de Tueste y Selección</h2>
         </div>
         
         <div class="grid-productos">
-            <!-- Producto 1 -->
             <div class="card-producto">
                 <h3>Tueste Medio Tradicional</h3>
                 <p>Un perfil diseñado para resaltar la dulzura natural del grano, ideal para métodos de filtrado y cafeteras manuales.</p>
@@ -397,7 +578,6 @@
                 </div>
             </div>
 
-            <!-- Producto 2 -->
             <div class="card-producto">
                 <h3>Selección Especial de Origen</h3>
                 <p>Granos de lotes seleccionados con rigor, sometidos a un tueste artesanal preciso para potenciar su complejidad.</p>
@@ -417,7 +597,6 @@
                 </div>
             </div>
 
-            <!-- Producto 3 -->
             <div class="card-producto">
                 <h3>Presentación Institucional</h3>
                 <p>Empaque diseñado para conservar las propiedades organolépticas, equipado con válvula desgasificadora y cierre hermético.</p>
@@ -435,6 +614,29 @@
                         <span class="ficha-value">Garantizada de Origen</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios e Alianzas Institucionales -->
+    <section id="alianzas" class="testimonios-section">
+        <div class="section-header">
+            <span class="section-subtitle">Confianza y Reseñas</span>
+            <h2 class="section-title">Lo que dicen de Café Solórzano</h2>
+        </div>
+        
+        <div class="testimonios-grid">
+            <div class="testimonio-card">
+                "Un café con una limpieza en taza excepcional. Se nota el cuidado artesanal y el respeto por el origen en cada sorbo."
+                <cite>&mdash; Camilo R., Consumidor Frecuente</cite>
+            </div>
+            <div class="testimonio-card">
+                "La trazabilidad y la historia detrás de la Vereda Berlín aportan un valor incalculable para quienes apreciamos el buen café de especialidad."
+                <cite>&mdash; Alianza de Cafés de Origen</cite>
+            </div>
+            <div class="testimonio-card">
+                "Excelente perfil de tueste medio; la dulzura a panela y su cuerpo equilibrado conquistan a cualquier amante del café colombiano."
+                <cite>&mdash; Catador y Barista Invitado</cite>
             </div>
         </div>
     </section>
