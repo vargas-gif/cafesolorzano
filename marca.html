@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café Solórzano | Café Artesanal de Origen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --vinotinto: #6a1e15;
-            --cafe-oscuro: #39251a;
-            --blanco-crema: #c0a689;
-            --crema-claro: #f7f4ee;
-            --blanco: #ffffff;
+            --vinotinto: #5A1810;
+            --vinotinto-hover: #43120B;
+            --cafe-oscuro: #2C1810;
+            --crema-bg: #FBF9F5;
+            --crema-card: #F2EFE9;
+            --dorado-suave: #C5A880;
+            --texto-principal: #332621;
+            --blanco: #FFFFFF;
         }
 
         * {
@@ -23,57 +26,79 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--crema-claro);
-            color: var(--cafe-oscuro);
-            line-height: 1.6;
+            background-color: var(--crema-bg);
+            color: var(--texto-principal);
+            line-height: 1.7;
         }
 
-        /* Barra de Navegación Institucional */
+        /* Navegación Moderna */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(57, 37, 26, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(44, 24, 16, 0.95);
+            backdrop-filter: blur(12px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 2rem;
-            z-index: 100;
-            border-bottom: 2px solid var(--blanco-crema);
+            padding: 1rem 3%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
         }
 
         .nav-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--blanco);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .nav-logo span {
+            color: var(--dorado-suave);
+            font-weight: 400;
+            font-style: italic;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--crema-claro);
+            color: #E2DBD6;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--blanco-crema);
+            color: var(--dorado-suave);
         }
 
-        /* Hero Section (Cabecera Principal de Marca) */
+        .nav-btn {
+            background: var(--dorado-suave) !important;
+            color: var(--cafe-oscuro) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background: var(--blanco) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section Moderna */
         header.hero {
-            height: 90vh;
-            background: linear-gradient(to bottom, rgba(57, 37, 26, 0.6), rgba(57, 37, 26, 0.85)), url('Finca cafetera entre montañas verdes.png');
+            min-height: 95vh;
+            background: linear-gradient(to bottom, rgba(44, 24, 16, 0.5), rgba(44, 24, 16, 0.85)), url('Finca cafetera entre montañas verdes.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -83,190 +108,222 @@
             text-align: center;
             padding: 0 1.5rem;
             color: var(--blanco);
-            margin-top: 60px;
+            margin-top: 0;
+        }
+
+        .hero-badge {
+            background: rgba(197, 168, 128, 0.25);
+            border: 1px solid var(--dorado-suave);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            max-width: 900px;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             max-width: 650px;
-            margin-bottom: 2rem;
-            color: var(--crema-claro);
+            margin-bottom: 2.5rem;
+            color: #EFECE6;
+            font-weight: 300;
         }
 
         .btn-principal {
             background: var(--vinotinto);
             color: var(--blanco);
-            border: 2px solid var(--blanco-crema);
-            padding: 0.8rem 2rem;
+            border: 1px solid var(--dorado-suave);
+            padding: 0.9rem 2.2rem;
             border-radius: 30px;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
             font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(90, 24, 16, 0.3);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .btn-principal:hover {
-            background: var(--blanco-crema);
-            color: var(--cafe-oscuro);
-            transform: translateY(-2px);
+            background: var(--vinotinto-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(90, 24, 16, 0.4);
         }
 
         /* Secciones Generales */
         section {
-            padding: 5rem 2rem;
-            max-width: 1100px;
+            padding: 6rem 8%;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--cafe-oscuro);
-            margin-bottom: 0.5rem;
+            margin-bottom: 4rem;
         }
 
         .section-subtitle {
-            text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--vinotinto);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 3rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            color: var(--cafe-oscuro);
             font-weight: 700;
         }
 
-        /* Grid de Historia / Origen */
+        /* Origen Layout Moderno */
         .grid-origen {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
             align-items: center;
         }
 
         .origen-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
             color: var(--cafe-oscuro);
         }
 
         .origen-text p {
-            margin-bottom: 1rem;
-            color: #554338;
-            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            color: #55443D;
+            font-size: 1.05rem;
+        }
+
+        .origen-img-container {
+            position: relative;
         }
 
         .origen-img {
             width: 100%;
-            height: 350px;
+            height: 420px;
             background-size: cover;
             background-position: center;
-            border-radius: 16px;
-            box-shadow: 0 15px 30px rgba(57, 37, 26, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(44, 24, 16, 0.12);
         }
 
-        /* Sección de Productos / Perfiles */
+        /* Sección de Perfiles (Productos) */
         .productos-section {
             background-color: var(--blanco);
-            border-top: 1px solid #e0d5cb;
-            border-bottom: 1px solid #e0d5cb;
+            border-top: 1px solid #EBE7E0;
+            border-bottom: 1px solid #EBE7E0;
         }
 
         .grid-productos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         .card-producto {
-            background: var(--crema-claro);
-            border: 1px solid var(--blanco-crema);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            background: var(--crema-bg);
+            border: 1px solid #EAE4DC;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .card-producto:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            border-color: var(--dorado-suave);
+            box-shadow: 0 20px 40px rgba(44, 24, 16, 0.08);
         }
 
         .card-producto h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--vinotinto);
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .card-producto p {
-            font-size: 0.88rem;
-            color: #554338;
-            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            color: #5A4B44;
+            margin-bottom: 1.5rem;
         }
 
         .etiqueta-notas {
             display: inline-block;
-            background: rgba(192, 166, 137, 0.3);
+            background: rgba(197, 168, 128, 0.2);
             color: var(--cafe-oscuro);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        /* Sección de Contacto General */
-        .contacto-section {
-            text-align: center;
+        /* Sección de Contacto Moderna */
+        .contacto-wrapper {
             background: var(--cafe-oscuro);
             color: var(--blanco);
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            margin: 4rem auto;
-            max-width: 900px;
+            padding: 5rem 3rem;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(44, 24, 16, 0.2);
         }
 
-        .contacto-section h2 {
+        .contacto-wrapper h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: clamp(2rem, 3vw, 2.5rem);
             margin-bottom: 1rem;
         }
 
-        .contacto-section p {
-            color: var(--crema-claro);
-            max-width: 500px;
-            margin: 0 auto 2rem auto;
-            font-size: 0.95rem;
+        .contacto-wrapper p {
+            color: #D1C7BF;
+            max-width: 550px;
+            margin: 0 auto 2.5rem auto;
+            font-size: 1.05rem;
         }
 
-        /* Footer Institucional */
+        /* Footer */
         footer {
-            background: #25170f;
-            color: var(--blanco-crema);
+            background: #1B0F0A;
+            color: #9E918B;
             text-align: center;
-            padding: 2rem;
-            font-size: 0.8rem;
+            padding: 3rem 2rem;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Adaptabilidad para Tablets y Celulares */
-        @media (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 900px) {
             .grid-origen {
                 grid-template-columns: 1fr;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
+                gap: 2.5rem;
             }
             .nav-links {
                 display: none;
+            }
+            section {
+                padding: 4rem 5%;
             }
         }
     </style>
@@ -275,72 +332,79 @@
 
     <!-- Navegación -->
     <nav>
-        <a href="#" class="nav-logo">solórzano</a>
+        <a href="#" class="nav-logo">solórzano <span>café artesanal</span></a>
         <ul class="nav-links">
-            <li><a href="#origen">Nuestra Finca</a></li>
+            <li><a href="#origen">Origen</a></li>
             <li><a href="#productos">Perfiles</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#contacto" class="nav-btn">Contacto Directo</a></li>
         </ul>
     </nav>
 
     <!-- Hero / Inicio de Marca -->
     <header class="hero">
-        <h1>Café Solórzano</h1>
-        <p>Café artesanal de origen único cultivado en la Vereda Berlín, Quipile (Cundinamarca). Tradición familiar y pasión en cada taza.</p>
-        <a href="#productos" class="btn-principal">Descubre Nuestros Cafés</a>
+        <span class="hero-badge">Cundinamarca, Colombia</span>
+        <h1>El Legado de una Tradición Cafetera</h1>
+        <p>Cultivado pacientemente a 1.810 m.s.n.m. en la Vereda Berlín. Un café artesanal que encapsula la pureza y el carácter de nuestras montañas.</p>
+        <a href="#productos" class="btn-principal">Explorar perfiles de café</a>
     </header>
 
     <!-- Sección Origen -->
     <section id="origen">
-        <h2 class="section-title">El Origen en el Cielo del Tequendama</h2>
-        <p class="section-subtitle">Tradición y Altitud a 1.810 m.s.n.m.</p>
+        <div class="section-header">
+            <span class="section-subtitle">Nuestra Esencia</span>
+            <h2 class="section-title">El Origen en el Cielo del Tequendama</h2>
+        </div>
         
         <div class="grid-origen">
             <div class="origen-text">
-                <h3>Una cosecha familiar con propósito</h3>
-                <p>Ubicados en un microclima privilegiado en Quipile, Cundinamarca, nuestra familia cultiva y selecciona cada grano de forma artesanal. La altitud de 1.810 metros sobre el nivel del mar permite una maduración lenta que concentra azúcares naturales incomparables[cite: 7].</p>
-                <p>Bajo el liderazgo de Don Jaime A. Solórzano, garantizamos un proceso honesto y directo desde la tierra hasta tu hogar, sin intermediarios industriales.</p>
+                <h3>Pasión familiar de origen único</h3>
+                <p>Ubicados en un microclima privilegiado en Quipile, nuestra familia cultiva, cuida y selecciona cada grano de manera artesanal. La altitud exacta de 1.810 metros sobre el nivel del mar fomenta una maduración lenta de la cereza, desarrollando azúcares naturales complejos y notas sumamente distintivas.</p>
+                <p>Bajo la dirección de Don Jaime A. Solórzano, garantizamos trazabilidad total y un proceso ético que respeta la tierra, conectando directamente la finca cafetera con tu taza.</p>
             </div>
-            <div class="origen-img" style="background-image: url('Paisaje del Café Solórzano al Amanecer.png');"></div>
+            <div class="origen-img-container">
+                <div class="origen-img" style="background-image: url('Paisaje del Café Solórzano al Amanecer.png');"></div>
+            </div>
         </div>
     </section>
 
     <!-- Sección Productos / Perfiles -->
     <section id="productos" class="productos-section">
-        <h2 class="section-title">Nuestros Perfiles de Tueste</h2>
-        <p class="section-subtitle">Aromas y notas naturales de finca</p>
+        <div class="section-header">
+            <span class="section-subtitle">Portafolio</span>
+            <h2 class="section-title">Nuestros Perfiles de Tueste</h2>
+        </div>
         
         <div class="grid-productos">
             <div class="card-producto">
                 <h3>Tueste Medio Tradicional</h3>
-                <p>Equilibrio perfecto entre cuerpo y acidez sutil, ideal para el método de filtrado o cafetera tradicional.</p>
+                <p>Un perfil equilibrado de cuerpo medio y acidez fina, ideal para métodos de filtrado y para disfrutar el ritual diario con notas limpias y dulces.</p>
                 <span class="etiqueta-notas">Notas a Panela y Vainilla</span>
             </div>
             <div class="card-producto">
                 <h3>Selección Especial de Origen</h3>
-                <p>Granos seleccionados a mano con un perfil de taza sumamente limpio, tueste artesanal controlado.</p>
-                <span class="etiqueta-notas">Notas a Chocolate Blanco</span>
+                <p>Granos de cerezas seleccionadas a mano con un tueste artesanal controlado que resalta una taza compleja y sumamente aromática.</p>
+                <span class="etiqueta-notas">Notas a Chocolate y Frutos Secos</span>
             </div>
             <div class="card-producto">
                 <h3>Presentación Institucional</h3>
-                <p>Empaques sellados con válvula desgasificadora para preservar la frescura y los aceites esenciales del café.</p>
-                <span class="etiqueta-notas">Presentación de 340g / 500g</span>
+                <p>Empaques de alta gama con válvula desgasificadora y cierre hermético diseñados para preservar intactos los aceites esenciales y la frescura.</p>
+                <span class="etiqueta-notas">Empaque de Conservación Óptima</span>
             </div>
         </div>
     </section>
 
     <!-- Sección Contacto Institucional -->
     <section id="contacto">
-        <div class="contacto-section">
-            <h2>¿Quieres llevar Café Solórzano a tu hogar o negocio?</h2>
-            <p>Contáctanos directamente para pedidos al por mayor, detalles de distribución o asesoría de tueste con la familia Solórzano.</p>
-            <a href="https://wa.me/573132244439?text=Hola,%20estoy%20visitando%20la%20página%20web%20general%20de%20Café%20Solórzano%20y%20deseo%20más%20información%20sobre%20sus%20productos." class="btn-principal" target="_blank">Escríbenos por WhatsApp</a>
+        <div class="contacto-wrapper">
+            <h2>Lleva la Experiencia Solórzano a tu Espacio</h2>
+            <p>Conéctate directamente con nosotros para pedidos institucionales, compras al por mayor o asesoría personalizada de tueste con la familia Solórzano.</p>
+            <a href="https://wa.me/573132244439?text=Hola,%20estoy%20visitando%20la%20página%20general%20de%20Café%20Solórzano%20y%20deseo%20más%20información%20sobre%20sus%20productos." class="btn-principal" target="_blank">Escribir por WhatsApp</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Café Solórzano &bull; Todos los derechos reservados &bull; Vereda Berlín, Quipile</p>
+        <p>&copy; 2026 Café Solórzano &bull; Todos los derechos reservados &bull; Vereda Berlín, Quipile, Cundinamarca</p>
     </footer>
 
 </body>
