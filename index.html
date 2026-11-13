@@ -33,7 +33,7 @@
 
         header {
             background: rgba(57, 37, 26, 0.95);
-            padding: 0.7rem 1rem;
+            padding: 0.6rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--blanco-crema);
             z-index: 30;
@@ -41,18 +41,18 @@
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             letter-spacing: 1px;
         }
 
         header p {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--blanco-crema);
         }
 
-        /* Contenedor del Mapa General / Visor de Zonas */
+        /* Visor de Finca */
         .visor-container {
             flex: 1;
             position: relative;
@@ -60,9 +60,9 @@
             background-position: center;
             transition: background-image 0.6s ease-in-out;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 1.2rem;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
         }
 
         .visor-container::before {
@@ -73,13 +73,41 @@
             z-index: 1;
         }
 
-        /* Pines interactivos que solo aparecen en la vista general (Zona 0) */
+        /* Botón Volver al Menú Principal (Arriba a la izquierda) */
+        .btn-volver {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(106, 30, 21, 0.9);
+            color: var(--blanco);
+            border: 2px solid var(--blanco-crema);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 40;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: none;
+            transition: background 0.3s;
+        }
+
+        .btn-volver:hover {
+            background: var(--vinotinto);
+        }
+
+        .btn-volver.visible {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Pines interactivos en la vista general */
         .pines-wrapper {
             position: absolute;
             inset: 0;
             z-index: 10;
             pointer-events: none;
-            display: block;
         }
 
         .pines-wrapper.oculto {
@@ -91,7 +119,7 @@
             background: var(--vinotinto);
             color: var(--blanco);
             border: 2px solid var(--blanco-crema);
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 700;
@@ -117,72 +145,128 @@
             100% { box-shadow: 0 0 0 0 rgba(106, 30, 21, 0); }
         }
 
-        /* Coordenadas exactas sobre tu imagen principal */
-        #pinCultivo { top: 70%; left: 15%; }
-        #pinProceso { top: 22%; left: 18%; }
-        #pinTaza { top: 50%; left: 80%; }
+        #pinCultivo { top: 68%; left: 16%; }
+        #pinProceso { top: 20%; left: 18%; }
+        #pinTaza { top: 50%; left: 78%; }
 
-        /* Panel de Información Flotante */
-        .panel-info {
+        /* Tarjeta Central Semitransparente (Vista General) */
+        .panel-central {
             position: relative;
             z-index: 20;
-            background: rgba(57, 37, 26, 0.93);
-            backdrop-filter: blur(12px);
+            background: rgba(57, 37, 26, 0.75);
+            backdrop-filter: blur(10px);
             border: 2px solid var(--blanco-crema);
-            border-radius: 16px;
-            padding: 1.2rem;
-            max-width: 620px;
-            margin: 0 auto;
+            border-radius: 20px;
+            padding: 1.8rem;
+            max-width: 550px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .panel-central.oculto {
+            display: none;
         }
 
         .panel-tag {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--blanco-crema);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.4rem;
             display: block;
         }
 
-        .panel-info h2 {
+        .panel-central h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--blanco);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        .panel-info p {
+        .panel-central p {
+            font-size: 0.9rem;
+            color: var(--crema-claro);
+            line-height: 1.4;
+        }
+
+        /* Tarjetas Específicas por Zona (Derecha o Izquierda) */
+        .panel-zona {
+            position: absolute;
+            z-index: 20;
+            background: rgba(57, 37, 26, 0.82);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--blanco-crema);
+            border-radius: 16px;
+            padding: 1.4rem;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            display: none;
+        }
+
+        .panel-zona.visible {
+            display: block;
+        }
+
+        /* Posicionamiento solicitado */
+        .pos-derecha {
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pos-izquierda {
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .panel-zona h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--blanco);
+            margin-bottom: 0.4rem;
+        }
+
+        .panel-zona p {
             font-size: 0.82rem;
             color: var(--crema-claro);
             line-height: 1.35;
             margin-bottom: 0.8rem;
         }
 
-        /* Barra de navegación inferior */
-        .zona-nav {
-            display: flex;
-            gap: 0.4rem;
-            overflow-x: auto;
-        }
-
-        .btn-zona {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--blanco-crema);
+        /* Botón Conoce más y panel desplegable */
+        .btn-conoce {
+            background: var(--vinotinto);
             color: var(--blanco);
-            padding: 0.35rem 0.8rem;
+            border: 1px solid var(--blanco-crema);
+            padding: 0.45rem 1rem;
             border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s;
+            transition: background 0.3s;
+            display: inline-block;
         }
 
-        .btn-zona.active, .btn-zona:hover {
-            background: var(--vinotinto);
-            border-color: var(--blanco);
+        .btn-conoce:hover {
+            background: var(--blanco-crema);
+            color: var(--cafe-oscuro);
+        }
+
+        .info-detallada {
+            display: none;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(192, 166, 137, 0.3);
+            font-size: 0.78rem;
+            color: var(--crema-claro);
+            line-height: 1.3;
+        }
+
+        .info-detallada.abierto {
+            display: block;
         }
 
         footer {
@@ -193,6 +277,18 @@
             color: var(--blanco-crema);
             z-index: 30;
         }
+
+        /* Adaptabilidad Perfecta para Tablets */
+        @media (max-width: 1024px) {
+            .panel-zona {
+                max-width: 320px;
+                padding: 1rem;
+            }
+            .panel-central {
+                max-width: 450px;
+                padding: 1.4rem;
+            }
+        }
     </style>
 </head>
 <body id="cuerpoApp">
@@ -202,27 +298,56 @@
         <p>Tour Interactivo 3D &bull; Finca Cafetera Quipile</p>
     </header>
 
-    <!-- Visor de Finca -->
+    <!-- Visor Principal de la Finca -->
     <main class="visor-container" id="visorFinca">
         
-        <!-- Pines interactivos sobre la vista general -->
+        <!-- Botón Volver al Menú Principal -->
+        <button class="btn-volver" id="btnVolver" onclick="irZona(0)">← Volver al Menú Principal</button>
+
+        <!-- Pines interactivos en la vista general -->
         <div class="pines-wrapper" id="pinesWrapper">
             <button class="pin" id="pinCultivo" onclick="irZona(1)">🍒 Ir a Cultivo</button>
             <button class="pin" id="pinProceso" onclick="irZona(2)">⚙️ Ir a Proceso</button>
             <button class="pin" id="pinTaza" onclick="irZona(3)">☕ Ir a Zona Café</button>
         </div>
 
-        <!-- Panel de Información y Navegación -->
-        <div class="panel-info">
-            <span class="panel-tag" id="zonaCoord">📍 Vista General &bull; Vereda Berlín (1.810 msnm)</span>
-            <h2 id="zonaTitulo">🏡 Finca Cafetera Café Solórzano</h2>
-            <p id="zonaDesc">Haz clic en los pines sobre la imagen general o usa los botones inferiores para explorar de cerca cada espacio de nuestra producción artesanal familiar[cite: 68].</p>
-            
-            <div class="zona-nav">
-                <button class="btn-zona active" onclick="irZona(0)">0. General</button>
-                <button class="btn-zona" onclick="irZona(1)">1. Cultivo</button>
-                <button class="btn-zona" onclick="irZona(2)">2. Proceso</button>
-                <button class="btn-zona" onclick="irZona(3)">3. Tomar Café</button>
+        <!-- 0. Tarjeta Central Semitransparente (Vista General) -->
+        <div class="panel-central" id="panelCentral">
+            <span class="panel-tag">📍 Vista General • Vereda Berlín, Quipile (1.810 msnm)[cite: 7, 68]</span>
+            <h2>🏡 Finca Cafetera Café Solórzano</h2>
+            <p>Bienvenido a nuestra casona tradicional. Haz clic en los pines flotantes de la imagen para hacer zoom y explorar cada área de producción artesanal.</p>
+        </div>
+
+        <!-- 1. Zona de Cultivo (Derecha en el medio) -->
+        <div class="panel-zona pos-derecha" id="panelCultivo">
+            <span class="panel-tag">📍 Estación 1 • El Cielo del Tequendama[cite: 7]</span>
+            <h2>🍒 Zona de Cultivo (1.810 msnm)[cite: 7]</h2>
+            <p>Paisaje de cafetales rodeados de neblina matutina en la vereda Berlín. Altura ideal para garantizar origen único[cite: 7].</p>
+            <button class="btn-conoce" onclick="toggleDetalle('detCultivo', this)">Conoce más</button>
+            <div class="info-detallada" id="detCultivo">
+                🌱 Recolección manual y cuidadosa de granos maduros liderada por la familia de Don Jaime A. Solórzano[cite: 68, 74]. Apoyo al campo local con propósito[cite: 79].
+            </div>
+        </div>
+
+        <!-- 2. Zona de Proceso (Derecha en el medio) -->
+        <div class="panel-zona pos-derecha" id="panelProceso">
+            <span class="panel-tag">📍 Estación 2 • Beneficio y Tueste</span>
+            <h2>⚙️ Zona de Proceso</h2>
+            <p>Área equipada para el despulpado, secado al sol y control de tueste con trazabilidad real[cite: 68].</p>
+            <button class="btn-conoce" onclick="toggleDetalle('detProceso', this)">Conoce más</button>
+            <div class="info-detallada" id="detProceso">
+                ✨ Aquí se desarrollan las notas sensoriales declaradas en nuestro empaque: Chocolate Blanco cremoso, Panela artesanal y un toque sutil de Vainilla[cite: 70, 80].
+            </div>
+        </div>
+
+        <!-- 3. Zona de Tomar Café (Izquierda en el medio) -->
+        <div class="panel-zona pos-izquierda" id="panelTaza">
+            <span class="panel-tag">📍 Estación 3 • Pausa Consciente[cite: 21]</span>
+            <h2>☕ Zona para Tomar Café</h2>
+            <p>Terraza mirador diseñada para disfrutar el producto final y vivir la experiencia del ritual matutino[cite: 74, 79].</p>
+            <button class="btn-conoce" onclick="toggleDetalle('detTaza', this)">Conoce más</button>
+            <div class="info-detallada" id="detTaza">
+                🧘 Pensado para consumidores urbanos como Camilo que valoran el bienestar, huyen de la publicidad genérica y buscan calidad de finca a taza[cite: 68, 70, 79].
             </div>
         </div>
 
@@ -233,64 +358,72 @@
     </footer>
 
     <script>
-        // Configuración con tus imágenes exactas y contenido estratégico
+        // Configuración de las zonas y sus fondos exactos
         const zonas = [
             {
-                titulo: "🏡 Finca Cafetera Café Solórzano",
-                coord: "📍 Vista General • Vereda Berlín, Quipile (1.810 msnm)",
-                desc: "Bienvenido a nuestra casona tradicional. Haz clic en los pines flotantes de la imagen para hacer zoom y explorar cada área de producción artesanal.",
                 img: "Finca cafetera entre montañas verdes.png",
                 fallback: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop",
-                mostrarPines: true
+                mostrarGeneral: true,
+                panelActivo: null
             },
             {
-                titulo: "🍒 Zona de Cultivo (1.810 msnm)",
-                coord: "📍 Estación 1 • El Cielo del Tequendama",
-                desc: "Paisaje de cafetales al amanecer. Aquí se realiza la selección manual de granos maduros por la familia de Don Jaime A. Solórzano, garantizando un origen único[cite: 7, 68, 74].",
                 img: "Paisaje del Café Solórzano al Amanecer.png",
                 fallback: "https://images.unsplash.com/photo-1589396205437-649033323c93?q=80&w=1200&auto=format&fit=crop",
-                mostrarPines: false
+                mostrarGeneral: false,
+                panelActivo: "panelCultivo"
             },
             {
-                titulo: "⚙️ Zona de Proceso y Beneficio",
-                coord: "📍 Estación 2 • Tueste y Trazabilidad Real",
-                desc: "Espacio equipado para el despulpado, secado y tueste. Aquí es donde el grano adquiere su perfil sensorial declarado: notas de chocolate blanco, panela y vainilla[cite: 7, 70].",
                 img: "Zona de Proceso Cafetero Colombiano.png",
                 fallback: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=1200&auto=format&fit=crop",
-                mostrarPines: false
+                mostrarGeneral: false,
+                panelActivo: "panelProceso"
             },
             {
-                titulo: "☕ Zona para Tomar Café (El Ritual)",
-                coord: "📍 Estación 3 • Experiencia y Pausa Consciente",
-                desc: "Terraza mirador diseñada para disfrutar el producto final. Pensada para consumidores como Camilo, que valoran el bienestar, el producto local y una pausa sin prisas[cite: 70, 79].",
                 img: "Terraza Café Solorzano al Atardecer.png",
                 fallback: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop",
-                mostrarPines: false
+                mostrarGeneral: false,
+                panelActivo: "panelTaza"
             }
         ];
 
         function irZona(index) {
             const z = zonas[index];
-            document.getElementById('zonaTitulo').textContent = z.titulo;
-            document.getElementById('zonaCoord').textContent = z.coord;
-            document.getElementById('zonaDesc').textContent = z.desc;
-
-            // Cambiar la imagen de fondo del visor
+            
+            // Cambiar imagen de fondo
             const visor = document.getElementById('visorFinca');
             visor.style.backgroundImage = `url('${z.img}'), url('${z.fallback}')`;
 
-            // Mostrar u ocultar los pines interactivos según si estamos en la vista general
+            // Control de visibilidad del menú general y botón volver
+            const panelCentral = document.getElementById('panelCentral');
             const pines = document.getElementById('pinesWrapper');
-            if (z.mostrarPines) {
+            const btnVolver = document.getElementById('btnVolver');
+
+            if (z.mostrarGeneral) {
+                panelCentral.classList.remove('oculto');
                 pines.classList.remove('oculto');
+                btnVolver.classList.remove('visible');
             } else {
+                panelCentral.classList.add('oculto');
                 pines.classList.add('oculto');
+                btnVolver.classList.add('visible');
             }
 
-            // Actualizar estado activo de los botones de navegación
-            document.querySelectorAll('.btn-zona').forEach((b, i) => {
-                b.classList.toggle('active', i === index);
-            });
+            // Ocultar todos los paneles de zona y mostrar solo el activo
+            document.querySelectorAll('.panel-zona').forEach(p => p.classList.remove('visible'));
+            if (z.panelActivo) {
+                document.getElementById(z.panelActivo).classList.add('visible');
+            }
+        }
+
+        // Función para desplegar información al hacer clic en "Conoce más"
+        function toggleDetalle(idDetalle, btn) {
+            const detalle = document.getElementById(idDetalle);
+            detalle.classList.toggle('abierto');
+            if (detalle.classList.contains('abierto')) {
+                btn.textContent = "Ocultar";
+            } else {
+                btn.textContent = "Conoce más";
+            }
         }
 
         // Iniciar en la vista general
