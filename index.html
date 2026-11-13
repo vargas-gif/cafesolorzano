@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Finca 3D | Café Solórzano</title>
+    <title>Tour Finca Interactiva | Café Solórzano</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -33,10 +33,10 @@
 
         header {
             background: rgba(57, 37, 26, 0.95);
-            padding: 0.8rem 1rem;
+            padding: 0.7rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--blanco-crema);
-            z-index: 20;
+            z-index: 30;
         }
 
         header h1 {
@@ -46,139 +46,152 @@
         }
 
         header p {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--blanco-crema);
         }
 
-        /* Contenedor del Escenario 3D Estilo Mapa/Visor */
-        .escenario-3d {
+        /* Contenedor del Mapa General / Visor de Zonas */
+        .visor-container {
             flex: 1;
             position: relative;
             background-size: cover;
             background-position: center;
-            transition: background 0.8s ease-in-out;
+            transition: background-image 0.6s ease-in-out;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 1.5rem;
-            perspective: 1000px;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.2rem;
         }
 
-        /* Efecto de profundidad tipo maqueta 3D */
-        .escenario-3d::before {
+        .visor-container::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(57,37,26,0.95) 10%, rgba(106,30,21,0.4) 60%, rgba(0,0,0,0.3) 100%);
+            background: rgba(57, 37, 26, 0.35);
             z-index: 1;
         }
 
-        /* Tarjeta de Información Flotante 3D */
-        .tarjeta-info {
-            position: relative;
+        /* Pines interactivos que solo aparecen en la vista general (Zona 0) */
+        .pines-wrapper {
+            position: absolute;
+            inset: 0;
             z-index: 10;
-            background: rgba(57, 37, 26, 0.9);
-            backdrop-filter: blur(12px);
-            border: 2px solid var(--blanco-crema);
-            border-radius: 16px;
-            padding: 1.5rem;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            transform: translateY(0);
-            animation: floatCard 0.5s ease;
-        }
-
-        @keyframes floatCard {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .coordenadas {
-            font-size: 0.75rem;
-            color: var(--blanco-crema);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.3rem;
+            pointer-events: none;
             display: block;
         }
 
-        .tarjeta-info h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+        .pines-wrapper.oculto {
+            display: none;
+        }
+
+        .pin {
+            position: absolute;
+            background: var(--vinotinto);
             color: var(--blanco);
-            margin-bottom: 0.5rem;
-        }
-
-        .tarjeta-info p {
-            font-size: 0.9rem;
-            color: var(--crema-claro);
-            line-height: 1.4;
-            margin-bottom: 1rem;
-        }
-
-        /* Barra de Navegación Estilo Google Maps / Street View */
-        .map-nav {
+            border: 2px solid var(--blanco-crema);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            transition: transform 0.3s, background 0.3s;
             display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
+            align-items: center;
+            gap: 0.3rem;
+            animation: pulsePin 2s infinite;
         }
 
-        .nav-punto {
+        .pin:hover {
+            background: var(--blanco-crema);
+            color: var(--cafe-oscuro);
+            transform: scale(1.1);
+        }
+
+        @keyframes pulsePin {
+            0% { box-shadow: 0 0 0 0 rgba(106, 30, 21, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(106, 30, 21, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(106, 30, 21, 0); }
+        }
+
+        /* Coordenadas exactas sobre tu imagen principal */
+        #pinCultivo { top: 70%; left: 15%; }
+        #pinProceso { top: 22%; left: 18%; }
+        #pinTaza { top: 50%; left: 80%; }
+
+        /* Panel de Información Flotante */
+        .panel-info {
+            position: relative;
+            z-index: 20;
+            background: rgba(57, 37, 26, 0.93);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--blanco-crema);
+            border-radius: 16px;
+            padding: 1.2rem;
+            max-width: 620px;
+            margin: 0 auto;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+        }
+
+        .panel-tag {
+            font-size: 0.7rem;
+            color: var(--blanco-crema);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .panel-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--blanco);
+            margin-bottom: 0.3rem;
+        }
+
+        .panel-info p {
+            font-size: 0.82rem;
+            color: var(--crema-claro);
+            line-height: 1.35;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Barra de navegación inferior */
+        .zona-nav {
+            display: flex;
+            gap: 0.4rem;
+            overflow-x: auto;
+        }
+
+        .btn-zona {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--blanco-crema);
             color: var(--blanco);
-            padding: 0.5rem 0.9rem;
+            padding: 0.35rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
         }
 
-        .nav-punto.active, .nav-punto:hover {
+        .btn-zona.active, .btn-zona:hover {
             background: var(--vinotinto);
             border-color: var(--blanco);
-            box-shadow: 0 4px 12px rgba(106,30,21,0.5);
         }
 
-        /* Botón de Siguiente / Acción */
-        .footer-tour {
+        footer {
             background: #25170f;
-            padding: 0.8rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 20;
-            border-top: 1px solid rgba(192,166,137,0.2);
-        }
-
-        .btn-avanzar {
-            background: var(--blanco-crema);
-            color: var(--cafe-oscuro);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-avanzar:hover {
-            background: var(--blanco);
-        }
-
-        .step-indicator {
-            font-size: 0.8rem;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.65rem;
             color: var(--blanco-crema);
+            z-index: 30;
         }
     </style>
 </head>
@@ -186,94 +199,102 @@
 
     <header>
         <h1>solórzano</h1>
-        <p>Visor 3D Interactivo &bull; Finca Cafetera</p>
+        <p>Tour Interactivo 3D &bull; Finca Cafetera Quipile</p>
     </header>
 
-    <!-- Escenario Principal Tipo Mapa 3D -->
-    <main class="escenario-3d" id="escenarioFinca">
-        <div class="tarjeta-info">
-            <span class="coordenadas" id="coordTxt">📍 Estación 1 de 4 &bull; Vereda Berlín (1.810 msnm)</span>
-            <h2 id="tituloEstacion">🌱 Ingreso a la Finca</h2>
-            <p id="descEstacion">Vista panorámica en perspectiva de la región cafetera en Quipile, Cundinamarca. El punto de origen donde inicia nuestra historia familiar y trazabilidad real.</p>
+    <!-- Visor de Finca -->
+    <main class="visor-container" id="visorFinca">
+        
+        <!-- Pines interactivos sobre la vista general -->
+        <div class="pines-wrapper" id="pinesWrapper">
+            <button class="pin" id="pinCultivo" onclick="irZona(1)">🍒 Ir a Cultivo</button>
+            <button class="pin" id="pinProceso" onclick="irZona(2)">⚙️ Ir a Proceso</button>
+            <button class="pin" id="pinTaza" onclick="irZona(3)">☕ Ir a Zona Café</button>
+        </div>
+
+        <!-- Panel de Información y Navegación -->
+        <div class="panel-info">
+            <span class="panel-tag" id="zonaCoord">📍 Vista General &bull; Vereda Berlín (1.810 msnm)</span>
+            <h2 id="zonaTitulo">🏡 Finca Cafetera Café Solórzano</h2>
+            <p id="zonaDesc">Haz clic en los pines sobre la imagen general o usa los botones inferiores para explorar de cerca cada espacio de nuestra producción artesanal familiar[cite: 68].</p>
             
-            <!-- Controles de navegación rápida estilo mapa -->
-            <div class="map-nav">
-                <button class="nav-punto active" onclick="irEstacion(0)">1. Finca</button>
-                <button class="nav-punto" onclick="irEstacion(1)">2. Cultivo</button>
-                <button class="nav-punto" onclick="irEstacion(2)">3. Proceso</button>
-                <button class="nav-punto" onclick="irEstacion(3)">4. Taza</button>
+            <div class="zona-nav">
+                <button class="btn-zona active" onclick="irZona(0)">0. General</button>
+                <button class="btn-zona" onclick="irZona(1)">1. Cultivo</button>
+                <button class="btn-zona" onclick="irZona(2)">2. Proceso</button>
+                <button class="btn-zona" onclick="irZona(3)">3. Tomar Café</button>
             </div>
         </div>
+
     </main>
 
-    <!-- Barra inferior de control -->
-    <footer class="footer-tour">
-        <span class="step-indicator" id="txtPaso">Avanzando por el territorio</span>
-        <button class="btn-avanzar" onclick="siguientePaso()">Siguiente Estación ➔</button>
+    <footer>
+        <p>Café Solórzano &bull; Trazabilidad real y origen único en el cielo del Tequendama[cite: 7, 68]</p>
     </footer>
 
     <script>
-        // Datos del recorrido 3D simulado estilo visor geográfico
-        const tourData = [
+        // Configuración con tus imágenes exactas y contenido estratégico
+        const zonas = [
             {
-                titulo: "🌱 1. Vista Panorámica de la Finca",
-                coord: "📍 Estación 1 de 4 • Vereda Berlín, Quipile (1.810 msnm)",
-                desc: "Bienvenido al punto de partida. Una zona privilegiada conocida como 'el cielo del Tequendama', donde la neblina y la altitud modelan un café de origen único.",
-                bg: "url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop')"
+                titulo: "🏡 Finca Cafetera Café Solórzano",
+                coord: "📍 Vista General • Vereda Berlín, Quipile (1.810 msnm)",
+                desc: "Bienvenido a nuestra casona tradicional. Haz clic en los pines flotantes de la imagen para hacer zoom y explorar cada área de producción artesanal.",
+                img: "Finca cafetera entre montañas verdes.png",
+                fallback: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop",
+                mostrarPines: true
             },
             {
-                titulo: "🍒 2. Zona de Cultivo y Recolección",
-                coord: "📍 Estación 2 de 4 • Lote Cafetalero Don Jaime",
-                desc: "Avanzamos al corazón de la tierra. Aquí se realiza la selección manual y cuidadosa de granos maduros por parte de la familia Solórzano, garantizando calidad artesanal.",
-                bg: "url('https://images.unsplash.com/photo-1589396205437-649033323c93?q=80&w=1200&auto=format&fit=crop')"
+                titulo: "🍒 Zona de Cultivo (1.810 msnm)",
+                coord: "📍 Estación 1 • El Cielo del Tequendama",
+                desc: "Paisaje de cafetales al amanecer. Aquí se realiza la selección manual de granos maduros por la familia de Don Jaime A. Solórzano, garantizando un origen único[cite: 7, 68, 74].",
+                img: "Paisaje del Café Solórzano al Amanecer.png",
+                fallback: "https://images.unsplash.com/photo-1589396205437-649033323c93?q=80&w=1200&auto=format&fit=crop",
+                mostrarPines: false
             },
             {
-                titulo: "⚙️ 3. Proceso y Perfil Sensorial",
-                coord: "📍 Estación 3 de 4 • Beneficio y Tueste",
-                desc: "El grano pasa por un riguroso control donde se desarrollan sus notas características: un dulzor a chocolate blanco, recuerdos de panela y un toque sutil de vainilla.",
-                bg: "url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=1200&auto=format&fit=crop')"
+                titulo: "⚙️ Zona de Proceso y Beneficio",
+                coord: "📍 Estación 2 • Tueste y Trazabilidad Real",
+                desc: "Espacio equipado para el despulpado, secado y tueste. Aquí es donde el grano adquiere su perfil sensorial declarado: notas de chocolate blanco, panela y vainilla[cite: 7, 70].",
+                img: "Zona de Proceso Cafetero Colombiano.png",
+                fallback: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=1200&auto=format&fit=crop",
+                mostrarPines: false
             },
             {
-                titulo: "☕ 4. El Ritual en Tu Mesa",
-                coord: "📍 Estación 4 de 4 • Destino Final (Bogotá / HORECA)",
-                desc: "El viaje concluye en tu taza. Un café que conecta la rutina diaria en la ciudad con el trabajo honesto del campo, listo para acompañar tus mejores momentos.",
-                bg: "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop')"
+                titulo: "☕ Zona para Tomar Café (El Ritual)",
+                coord: "📍 Estación 3 • Experiencia y Pausa Consciente",
+                desc: "Terraza mirador diseñada para disfrutar el producto final. Pensada para consumidores como Camilo, que valoran el bienestar, el producto local y una pausa sin prisas[cite: 70, 79].",
+                img: "Terraza Café Solorzano al Atardecer.png",
+                fallback: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop",
+                mostrarPines: false
             }
         ];
 
-        let currentIndex = 0;
+        function irZona(index) {
+            const z = zonas[index];
+            document.getElementById('zonaTitulo').textContent = z.titulo;
+            document.getElementById('zonaCoord').textContent = z.coord;
+            document.getElementById('zonaDesc').textContent = z.desc;
 
-        function actualizarVista() {
-            const data = tourData[currentIndex];
-            document.getElementById('tituloEstacion').textContent = data.titulo;
-            document.getElementById('coordTxt').textContent = data.coord;
-            document.getElementById('descEstacion').textContent = data.desc;
-            document.getElementById('escenarioFinca').style.backgroundImage = data.bg;
-            document.getElementById('txtPaso').textContent = `Estación ${currentIndex + 1} de 4`;
+            // Cambiar la imagen de fondo del visor
+            const visor = document.getElementById('visorFinca');
+            visor.style.backgroundImage = `url('${z.img}'), url('${z.fallback}')`;
 
-            // Actualizar botones activos
-            const botones = document.querySelectorAll('.nav-punto');
-            botones.forEach((btn, idx) => {
-                if(idx === currentIndex) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            // Mostrar u ocultar los pines interactivos según si estamos en la vista general
+            const pines = document.getElementById('pinesWrapper');
+            if (z.mostrarPines) {
+                pines.classList.remove('oculto');
+            } else {
+                pines.classList.add('oculto');
+            }
+
+            // Actualizar estado activo de los botones de navegación
+            document.querySelectorAll('.btn-zona').forEach((b, i) => {
+                b.classList.toggle('active', i === index);
             });
         }
 
-        function irEstacion(index) {
-            currentIndex = index;
-            actualizarVista();
-        }
-
-        function siguientePaso() {
-            currentIndex = (currentIndex + 1) % tourData.length;
-            actualizarVista();
-        }
-
-        // Inicializar
-        actualizarVista();
+        // Iniciar en la vista general
+        irZona(0);
     </script>
 </body>
 </html>
