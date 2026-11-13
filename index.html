@@ -78,7 +78,7 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(106, 30, 21, 0.85);
+            background: rgba(106, 30, 21, 0.88);
             backdrop-filter: blur(6px);
             color: var(--blanco);
             border: 1.5px solid var(--blanco-crema);
@@ -151,7 +151,7 @@
         #pinProceso { top: 20%; left: 18%; }
         #pinTaza { top: 50%; left: 78%; }
 
-        /* Tarjeta Central Más Transparentosa (Vista General) */
+        /* Tarjeta Central Transparentosa (Vista General) */
         .panel-central {
             position: relative;
             z-index: 20;
@@ -195,7 +195,7 @@
             line-height: 1.45;
         }
 
-        /* Tarjetas Específicas por Zona (Más transparentosas y con scroll interno si se expande) */
+        /* Tarjetas Específicas por Zona */
         .panel-zona {
             position: absolute;
             z-index: 20;
@@ -219,7 +219,6 @@
             display: block;
         }
 
-        /* Personalización sutil de barra de desplazamiento en los cuadros */
         .panel-zona::-webkit-scrollbar {
             width: 5px;
         }
@@ -228,7 +227,6 @@
             border-radius: 10px;
         }
 
-        /* Posicionamiento solicitado */
         .pos-derecha {
             right: 4%;
             top: 50%;
@@ -251,11 +249,11 @@
         .panel-zona p {
             font-size: 0.83rem;
             color: var(--crema-claro);
-            line-height: 1.4;
+            line-height: 1.45;
             margin-bottom: 0.85rem;
         }
 
-        /* Botón Conoce más y panel desplegable enriquecido */
+        /* Botón Conoce más y panel desplegable */
         .btn-conoce {
             background: rgba(106, 30, 21, 0.9);
             color: var(--blanco);
@@ -282,7 +280,7 @@
             border-top: 1px solid rgba(192, 166, 137, 0.45);
             font-size: 0.8rem;
             color: var(--crema-claro);
-            line-height: 1.45;
+            line-height: 1.5;
         }
 
         .info-detallada.abierto {
@@ -296,41 +294,53 @@
         }
 
         .dato-clave {
-            background: rgba(37, 23, 15, 0.55);
+            background: rgba(37, 23, 15, 0.58);
             border-left: 3px solid var(--blanco-crema);
-            padding: 0.55rem 0.75rem;
+            padding: 0.65rem 0.8rem;
             border-radius: 0 8px 8px 0;
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.7rem;
         }
 
-        .dato-clave strong {
+        /* Título de cada bloque informativo (separado de las negritas normales) */
+        .titulo-bloque {
             color: var(--blanco-crema);
             display: block;
             font-size: 0.76rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.15rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Negritas dentro del texto fluyen de manera natural */
+        .dato-clave strong {
+            color: var(--blanco);
+            font-weight: 700;
         }
 
         .lista-notas {
             list-style: none;
-            margin: 0.5rem 0;
+            margin: 0.45rem 0 0 0;
         }
 
         .lista-notas li {
-            margin-bottom: 0.4rem;
-            padding-left: 0.2rem;
+            margin-bottom: 0.45rem;
+            padding-left: 0.15rem;
+        }
+
+        .lista-notas li:last-child {
+            margin-bottom: 0;
         }
 
         .btn-accion-zona {
             display: inline-block;
-            margin-top: 0.5rem;
+            margin-top: 0.35rem;
             background: var(--blanco-crema);
             color: var(--cafe-oscuro);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.75rem;
-            padding: 0.45rem 0.9rem;
+            font-size: 0.76rem;
+            padding: 0.5rem 1rem;
             border-radius: 15px;
             text-shadow: none;
             transition: background 0.2s;
@@ -382,45 +392,45 @@
             <button class="pin" id="pinTaza" onclick="irZona(3)">☕ Ir a Zona Café</button>
         </div>
 
-        <!-- 0. Tarjeta Central Semitransparente (Vista General) -->
+        <!-- 0. Tarjeta Central (Vista General) -->
         <div class="panel-central" id="panelCentral">
-            <span class="panel-tag">📍 Vista General • Vereda Berlín, Quipile (1.810 msnm)</span>
+            <span class="panel-tag">📍 Vista General &bull; Vereda Berlín, Quipile (1.810 m.s.n.m.)</span>
             <h2>🏡 Finca Cafetera Café Solórzano</h2>
-            <p>Bienvenido a nuestra casona tradicional. Haz clic en los pines flotantes de la imagen para hacer zoom y explorar cada área de producción artesanal.</p>
+            <p>Bienvenido a nuestra casona tradicional. Haz clic en los pines flotantes de la imagen para acercarte y explorar cada área de nuestra producción artesanal.</p>
         </div>
 
         <!-- 1. Zona de Cultivo (Derecha en el medio) -->
         <div class="panel-zona pos-derecha" id="panelCultivo">
-            <span class="panel-tag">📍 Estación 1 • El Cielo del Tequendama</span>
-            <h2>🍒 Zona de Cultivo (1.810 msnm)</h2>
+            <span class="panel-tag">📍 Estación 1 &bull; El Cielo del Tequendama</span>
+            <h2>🍒 Zona de Cultivo (1.810 m.s.n.m.)</h2>
             <p>Cafetales de montaña abrazados por la neblina de la vereda Berlín. Aquí nace el carácter único del grano que tienes en tus manos.</p>
             <button class="btn-conoce" onclick="toggleDetalle('detCultivo', this)">Conoce más</button>
             
             <div class="info-detallada" id="detCultivo">
                 <div class="dato-clave">
-                    <strong>⛰️ ¿Por qué importan los 1.810 m.s.n.m.?</strong>
-                    En la altura de Quipile (Cundinamarca), las noches frescas y los días templados hacen que la cereza del café madure más despacio, concentrando mayor dulzor natural y acidez equilibrada.
+                    <span class="titulo-bloque">⛰️ ¿Por qué importan los 1.810 m.s.n.m.?</span>
+                    En las montañas de Quipile (Cundinamarca), las noches frescas y los días templados hacen que la cereza del café madure más despacio, concentrando mayor dulzor natural y una acidez equilibrada.
                 </div>
                 <div class="dato-clave">
-                    <strong>👨‍🌾 Cosecha Manual de Autor</strong>
+                    <span class="titulo-bloque">👨‍🌾 Cosecha Manual de Autor</span>
                     Bajo el cuidado de <strong>Don Jaime A. Solórzano</strong>, solo se recolectan a mano los frutos en su punto exacto de maduración roja, evitando granos verdes o pasados que amargan la taza.
                 </div>
                 <p style="margin-bottom: 0; font-size: 0.76rem; color: var(--blanco-crema);">
-                    ✓ Café 100% de origen único: sin mezclas industriales ni intermediarios.
+                    ✓ Café 100 % de origen único: sin mezclas industriales ni intermediarios.
                 </p>
             </div>
         </div>
 
         <!-- 2. Zona de Proceso (Derecha en el medio) -->
         <div class="panel-zona pos-derecha" id="panelProceso">
-            <span class="panel-tag">📍 Estación 2 • Beneficio y Tueste</span>
+            <span class="panel-tag">📍 Estación 2 &bull; Beneficio y Tueste</span>
             <h2>⚙️ Zona de Proceso</h2>
-            <p>Donde el fruto recién cosechado se transforma mediante secado cuidadoso y tueste medio-alto para revelar su perfil natural.</p>
+            <p>Donde el fruto recién cosechado se transforma mediante un secado cuidadoso y un tueste medio-alto para revelar su perfil natural.</p>
             <button class="btn-conoce" onclick="toggleDetalle('detProceso', this)">Conoce más</button>
             
             <div class="info-detallada" id="detProceso">
                 <div class="dato-clave">
-                    <strong>🎨 Notas Sensoriales Reales (Sin Saborizantes)</strong>
+                    <span class="titulo-bloque">🎨 Notas Sensoriales Reales (Sin Saborizantes)</span>
                     Nuestro tueste artesanal resalta los atributos propios del grano de la finca:
                     <ul class="lista-notas">
                         <li>🍫 <strong>Chocolate blanco:</strong> textura cremosa y dulzor suave en boca.</li>
@@ -429,7 +439,7 @@
                     </ul>
                 </div>
                 <div class="dato-clave" style="margin-bottom: 0;">
-                    <strong>🛡️ Conserva su frescura en casa</strong>
+                    <span class="titulo-bloque">🛡️ Conserva su Frescura en Casa</span>
                     Mantén tu bolsa bien sellada en un lugar fresco, seco y lejos de olores fuertes (como especias o productos de aseo) para proteger sus aceites aromáticos.
                 </div>
             </div>
@@ -437,19 +447,18 @@
 
         <!-- 3. Zona de Tomar Café (Izquierda en el medio) -->
         <div class="panel-zona pos-izquierda" id="panelTaza">
-            <span class="panel-tag">📍 Estación 3 • Pausa Consciente</span>
+            <span class="panel-tag">📍 Estación 3 &bull; Pausa Consciente</span>
             <h2>☕ Zona para Tomar Café</h2>
             <p>El destino final del viaje: tu cocina u oficina. Un ritual sencillo para detener el afán del día y conectar con el campo.</p>
             <button class="btn-conoce" onclick="toggleDetalle('detTaza', this)">Conoce más</button>
             
             <div class="info-detallada" id="detTaza">
                 <div class="dato-clave">
-                    <strong>⏱️ Guía Rápida para tu Taza Perfecta</strong>
-                    Sin complicaciones ni jerga de barista:
+                    <span class="titulo-bloque">⏱️ Guía Rápida para tu Taza Perfecta</span>
                     <ul class="lista-notas">
-                        <li><strong>1. Proporción:</strong> Usa 15 g de café (aprox. 2 cucharadas soperas) por cada 250 ml de agua pura.</li>
-                        <li><strong>2. Temperatura:</strong> Calienta el agua sin dejarla hervir a borbotones para no quemar las notas dulces.</li>
-                        <li><strong>3. Disfruta:</strong> Ideal para cafetera tradicional, filtro de papel o prensa francesa.</li>
+                        <li><strong>1. Proporción:</strong> usa 15 g de café (aprox. 2 cucharadas soperas) por cada 250 ml de agua pura.</li>
+                        <li><strong>2. Temperatura:</strong> calienta el agua sin dejarla hervir a borbotones para no quemar las notas dulces.</li>
+                        <li><strong>3. Disfruta:</strong> ideal para cafetera tradicional, filtro de papel o prensa francesa.</li>
                     </ul>
                 </div>
                 <p style="margin-bottom: 0.5rem; font-size: 0.78rem;">¿Se te está acabando tu bolsa o quieres probar otro tueste?</p>
@@ -494,11 +503,9 @@
         function irZona(index) {
             const z = zonas[index];
             
-            // Cambiar imagen de fondo
             const visor = document.getElementById('visorFinca');
             visor.style.backgroundImage = `url('${z.img}'), url('${z.fallback}')`;
 
-            // Control de visibilidad del menú general y botón volver
             const panelCentral = document.getElementById('panelCentral');
             const pines = document.getElementById('pinesWrapper');
             const btnVolver = document.getElementById('btnVolver');
@@ -513,7 +520,6 @@
                 btnVolver.classList.add('visible');
             }
 
-            // Ocultar todos los paneles de zona y cerrar sus desplegables previos
             document.querySelectorAll('.panel-zona').forEach(p => p.classList.remove('visible'));
             document.querySelectorAll('.info-detallada').forEach(d => d.classList.remove('abierto'));
             document.querySelectorAll('.btn-conoce').forEach(b => b.textContent = "Conoce más");
@@ -533,7 +539,6 @@
             }
         }
 
-        // Iniciar en la vista general
         irZona(0);
     </script>
 </body>
