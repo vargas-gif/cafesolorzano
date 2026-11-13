@@ -37,7 +37,6 @@
             text-align: center;
             border-bottom: 2px solid var(--blanco-crema);
             z-index: 30;
-            position: relative;
         }
 
         header h1 {
@@ -51,46 +50,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--blanco-crema);
-        }
-
-        /* Sello de Trazabilidad en el Header */
-        .badge-sello {
-            display: inline-block;
-            background: var(--vinotinto);
-            color: var(--blanco-crema);
-            border: 1px solid var(--blanco-crema);
-            font-size: 0.62rem;
-            font-weight: 700;
-            padding: 0.15rem 0.6rem;
-            border-radius: 12px;
-            margin-top: 0.2rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Botón de Audio Ambiental (Esquina superior derecha del header) */
-        .btn-audio-ambiental {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(106, 30, 21, 0.9);
-            color: var(--blanco);
-            border: 1px solid var(--blanco-crema);
-            padding: 0.35rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: background 0.3s;
-        }
-
-        .btn-audio-ambiental:hover {
-            background: var(--blanco-crema);
-            color: var(--cafe-oscuro);
         }
 
         /* Visor de Finca */
@@ -357,12 +316,13 @@
             font-weight: 700;
         }
 
-        /* Cuadro de Testimonio Real (Prueba Social) */
+        /* Cuadro de Testimonio Real ubicado debajo de la guía */
         .testimonio-box {
             background: rgba(106, 30, 21, 0.4);
             border: 1px dashed var(--blanco-crema);
             padding: 0.65rem 0.8rem;
             border-radius: 10px;
+            margin-top: 0.7rem;
             margin-bottom: 0.7rem;
             font-style: italic;
             font-size: 0.78rem;
@@ -435,8 +395,6 @@
     <header>
         <h1>solórzano</h1>
         <p>Tour Interactivo &bull; Finca Cafetera Quipile</p>
-        <div class="badge-sello">✨ Cosecha Limitada &bull; 100% Trazabilidad Directa</div>
-        <button class="btn-audio-ambiental" id="btnAudio" onclick="toggleAudioAmbiente()">🎵 Sonido Finca</button>
     </header>
 
     <!-- Visor Principal de la Finca -->
@@ -513,12 +471,6 @@
             <button class="btn-conoce" onclick="toggleDetalle('detTaza', this)">Conoce más</button>
             
             <div class="info-detallada" id="detTaza">
-                <!-- Prueba Social / Testimonio Real (Punto 1) -->
-                <div class="testimonio-box">
-                    "Desde que escaneo este QR y pido el café directo a la finca, mi pausa de la mañana tiene otro sentido. Se siente el trabajo honesto de origen."
-                    <span>— Camilo R., Consumidor Consciente</span>
-                </div>
-
                 <div class="dato-clave">
                     <span class="titulo-bloque">⏱️ Guía Rápida para tu Taza Perfecta</span>
                     <ul class="lista-notas">
@@ -527,6 +479,13 @@
                         <li><strong>3. Disfruta:</strong> ideal para cafetera tradicional, filtro de papel o prensa francesa.</li>
                     </ul>
                 </div>
+
+                <!-- Testimonio Real (debajo de la guía) -->
+                <div class="testimonio-box">
+                    "Desde que escaneo este QR y pido el café directo a la finca, mi pausa de la mañana tiene otro sentido. Se siente el trabajo honesto de origen."
+                    <span>— Camilo R., Consumidor Consciente</span>
+                </div>
+
                 <p style="margin-bottom: 0.5rem; font-size: 0.78rem;">¿Se te está acabando tu bolsa o quieres pedir otro tueste?</p>
                 <a href="https://wa.me/573132244439?text=Hola,%20escaneé%20el%20QR%20de%20mi%20empaque%20Café%20Solórzano%20y%20quiero%20pedir%20más" class="btn-accion-zona" target="_blank">📲 Pedir directo a la finca (WhatsApp)</a>
             </div>
@@ -602,19 +561,6 @@
                 btn.textContent = "Ocultar información";
             } else {
                 btn.textContent = "Conoce más";
-            }
-        }
-
-        // Simulación interactiva de audio ambiental para la sustentación (Punto 3)
-        let audioActivo = false;
-        function toggleAudioAmbiente() {
-            const btnAudio = document.getElementById('btnAudio');
-            audioActivo = !audioActivo;
-            if (audioActivo) {
-                btnAudio.innerHTML = "🔊 Sonido Activo";
-                alert("🔊 [Experiencia Sensorial Activa]: Reproduciendo sonido ambiental de pájaros matutinos y viento en los cafetales de la Vereda Berlín (Quipile).");
-            } else {
-                btnAudio.innerHTML = "🎵 Sonido Finca";
             }
         }
 
