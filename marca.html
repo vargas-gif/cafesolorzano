@@ -308,79 +308,76 @@
             margin-bottom: 0.8rem;
         }
 
-        /* Perfiles de Café (Ahora son 2 tarjetas simétricas de tueste) */
-        .grid-productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 900px;
+        /* Tarjeta Única de Perfil y Calidad Unificada */
+        .perfil-unificado-container {
+            max-width: 850px;
             margin: 0 auto;
         }
 
-        .card-producto {
+        .card-perfil-maestro {
             background: var(--crema-card);
-            border: 1px solid var(--borde-sutil);
+            border: 1px solid var(--dorado);
             border-radius: 8px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 15px 35px rgba(184, 151, 104, 0.1);
+            text-align: center;
         }
 
-        .card-producto:hover {
-            transform: translateY(-5px);
-            border-color: var(--dorado);
-        }
-
-        .card-producto h3 {
+        .card-perfil-maestro h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: var(--vinotinto);
             margin-bottom: 0.8rem;
         }
 
-        .card-producto > p {
+        .card-perfil-maestro > p {
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .perfil-grid-detalles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            border-top: 1px solid var(--borde-sutil);
+            border-bottom: 1px solid var(--borde-sutil);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .detalle-col h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--cafe-oscuro);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .detalle-col p {
             font-size: 0.85rem;
             color: var(--texto-secundario);
-            margin-bottom: 1.5rem;
-        }
-
-        .ficha-tecnica {
-            border-top: 1px solid var(--borde-sutil);
-            padding-top: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-        }
-
-        .ficha-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-        }
-
-        .ficha-label {
-            font-weight: 600;
-            color: var(--cafe-oscuro);
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-        }
-
-        .ficha-value {
-            color: var(--texto-secundario);
             font-weight: 500;
+        }
+
+        .perfil-nota-final {
+            font-size: 0.85rem;
+            color: var(--texto-secundario);
+            font-style: italic;
         }
 
         /* Sección de Empaque Institucional Independiente y Elegante */
         .empaque-institucional {
             background: var(--crema-card);
-            border: 1px solid var(--dorado);
+            border: 1px solid var(--borde-sutil);
             border-radius: 8px;
             padding: 2.5rem;
-            max-width: 900px;
-            margin: 3rem auto 0 auto;
+            max-width: 850px;
+            margin: 2.5rem auto 0 auto;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(184, 151, 104, 0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
         }
 
         .empaque-institucional h3 {
@@ -521,6 +518,10 @@
             .contacto-wrapper {
                 padding: 3rem 1.5rem;
             }
+            .perfil-grid-detalles {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
             .empaque-detalles {
                 flex-direction: column;
                 gap: 1rem;
@@ -539,7 +540,7 @@
         <ul class="nav-links">
             <li><a href="#origen">Origen</a></li>
             <li><a href="#proceso">Proceso</a></li>
-            <li><a href="#productos">Perfiles</a></li>
+            <li><a href="#perfil">Perfil</a></li>
             <li><a href="#alianzas">Alianzas</a></li>
             <li><a href="#contacto" class="nav-btn">Contacto</a></li>
         </ul>
@@ -550,7 +551,7 @@
         <span class="hero-badge">Vereda Berlín &bull; Quipile, Cundinamarca</span>
         <h1>Tradición Familiar en Cada Grano</h1>
         <p>Cultivado pacientemente a 1.810 metros de altura en un microclima privilegiado del Tequendama.</p>
-        <a href="#productos" class="btn-principal">Conocer perfiles</a>
+        <a href="#perfil" class="btn-principal">Conocer perfil en taza</a>
     </header>
 
     <!-- Barra de Iconos y Trazabilidad -->
@@ -633,70 +634,54 @@
         </div>
     </section>
 
-    <!-- Perfiles de Café y Presentación -->
-    <section id="productos" style="background-color: #FFFFFF;">
+    <!-- Perfil Único y Calidad del Café -->
+    <section id="perfil" style="background-color: #FFFFFF;">
         <div class="section-header">
-            <span class="section-subtitle">Portafolio</span>
-            <h2 class="section-title">Perfiles de Tueste y Calidad</h2>
+            <span class="section-subtitle">Nuestra Esencia en Taza</span>
+            <h2 class="section-title">Perfil Sensorial y de Selección</h2>
         </div>
         
-        <!-- Tarjetas de Tueste (Ahora simétricas y claras) -->
-        <div class="grid-productos">
-            <div class="card-producto">
-                <h3>Tueste Medio Tradicional</h3>
-                <p>Un perfil diseñado para resaltar la dulzura natural del grano, ideal para métodos de filtrado y cafeteras manuales.</p>
-                <div class="ficha-tecnica">
-                    <div class="ficha-row">
-                        <span class="ficha-label">Perfil en Taza</span>
-                        <span class="ficha-value">Equilibrado y limpio</span>
+        <!-- Tarjeta Maestra Unificada -->
+        <div class="perfil-unificado-container">
+            <div class="card-perfil-maestro">
+                <h3>Café Artesanal de Origen Único</h3>
+                <p>Cultivado en la Vereda Berlín y tostado bajo curvas precisas que equilibran el cuerpo tradicional con notas aromáticas finas y complejas.</p>
+                
+                <div class="perfil-grid-detalles">
+                    <div class="detalle-col">
+                        <h4>Perfil en Taza</h4>
+                        <p>Cuerpo equilibrado, limpio y de alta fineza</p>
                     </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Notas Aromáticas</span>
-                        <span class="ficha-value">Panela y Vainilla sutil</span>
+                    <div class="detalle-col">
+                        <h4>Notas Aromáticas</h4>
+                        <p>Panela, Vainilla sutil y Frutos Secos</p>
                     </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Método Ideal</span>
-                        <span class="ficha-value">Filtro / V60 / Prensa</span>
+                    <div class="detalle-col">
+                        <h4>Método Ideal</h4>
+                        <p>Filtro / V60 / Prensa / Chemex</p>
                     </div>
                 </div>
+
+                <p class="perfil-nota-final">Garantiza una experiencia inigualable que conecta directamente la tradición de la alta montaña con tu taza.</p>
             </div>
 
-            <div class="card-producto">
-                <h3>Selección Especial de Origen</h3>
-                <p>Granos de lotes seleccionados con rigor, sometidos a un tueste artesanal preciso para potenciar su complejidad.</p>
-                <div class="ficha-tecnica">
-                    <div class="ficha-row">
-                        <span class="ficha-label">Perfil en Taza</span>
-                        <span class="ficha-value">Cuerpo medio / Alta fineza</span>
+            <!-- Bloque Institucional de Empaque (Independiente y ordenado) -->
+            <div class="empaque-institucional">
+                <h3>Presentación y Conservación Institucional</h3>
+                <p>Cada lote es empacado en bolsas selladas de alta gama diseñadas específicamente para preservar intactos los aceites esenciales, la frescura y los aromas del café de origen.</p>
+                <div class="empaque-detalles">
+                    <div class="empaque-item">
+                        <span class="empaque-label">Tecnología</span>
+                        <span class="empaque-val">Válvula Desgasificadora</span>
                     </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Notas Aromáticas</span>
-                        <span class="ficha-value">Chocolate y Frutos Secos</span>
+                    <div class="empaque-item">
+                        <span class="empaque-label">Uso Recomendado</span>
+                        <span class="empaque-val">Hogares y Cafeterías</span>
                     </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Método Ideal</span>
-                        <span class="ficha-value">Chemex / Tradicional</span>
+                    <div class="empaque-item">
+                        <span class="empaque-label">Garantía</span>
+                        <span class="empaque-val">Frescura Absoluta en Origen</span>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bloque Institucional de Empaque (Independiente y ordenado) -->
-        <div class="empaque-institucional">
-            <h3>Presentación y Conservación Institucional</h3>
-            <p>Cada lote es empacado en bolsas selladas de alta gama diseñadas específicamente para preservar intactos los aceites esenciales, la frescura y los aromas del café de origen.</p>
-            <div class="empaque-detalles">
-                <div class="empaque-item">
-                    <span class="empaque-label">Tecnología</span>
-                    <span class="empaque-val">Válvula Desgasificadora</span>
-                </div>
-                <div class="empaque-item">
-                    <span class="empaque-label">Uso Recomendado</span>
-                    <span class="empaque-val">Hogares y Cafeterías</span>
-                </div>
-                <div class="empaque-item">
-                    <span class="empaque-label">Garantía</span>
-                    <span class="empaque-val">Frescura Absoluta en Origen</span>
                 </div>
             </div>
         </div>
