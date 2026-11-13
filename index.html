@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Finca Interactiva | Café Solórzano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --vinotinto: #6a1e15;
@@ -32,7 +32,7 @@
         }
 
         header {
-            background: rgba(57, 37, 26, 0.95);
+            background: rgba(57, 37, 26, 0.92);
             padding: 0.6rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--blanco-crema);
@@ -69,7 +69,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(57, 37, 26, 0.35);
+            background: rgba(57, 37, 26, 0.22);
             z-index: 1;
         }
 
@@ -78,22 +78,24 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(106, 30, 21, 0.9);
+            background: rgba(106, 30, 21, 0.85);
+            backdrop-filter: blur(6px);
             color: var(--blanco);
-            border: 2px solid var(--blanco-crema);
+            border: 1.5px solid var(--blanco-crema);
             padding: 0.5rem 1rem;
             border-radius: 30px;
             font-size: 0.8rem;
             font-weight: 700;
             cursor: pointer;
             z-index: 40;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             display: none;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .btn-volver:hover {
             background: var(--vinotinto);
+            transform: scale(1.03);
         }
 
         .btn-volver.visible {
@@ -116,16 +118,16 @@
 
         .pin {
             position: absolute;
-            background: var(--vinotinto);
+            background: rgba(106, 30, 21, 0.9);
             color: var(--blanco);
             border: 2px solid var(--blanco-crema);
-            padding: 0.4rem 0.9rem;
+            padding: 0.45rem 0.95rem;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
             pointer-events: auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             transition: transform 0.3s, background 0.3s;
             display: flex;
             align-items: center;
@@ -149,19 +151,21 @@
         #pinProceso { top: 20%; left: 18%; }
         #pinTaza { top: 50%; left: 78%; }
 
-        /* Tarjeta Central Semitransparente (Vista General) */
+        /* Tarjeta Central Más Transparentosa (Vista General) */
         .panel-central {
             position: relative;
             z-index: 20;
-            background: rgba(57, 37, 26, 0.75);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--blanco-crema);
+            background: rgba(57, 37, 26, 0.48);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(192, 166, 137, 0.75);
             border-radius: 20px;
-            padding: 1.8rem;
-            max-width: 550px;
+            padding: 1.7rem;
+            max-width: 530px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.65);
         }
 
         .panel-central.oculto {
@@ -169,85 +173,101 @@
         }
 
         .panel-tag {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--blanco-crema);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
             display: block;
+            font-weight: 600;
         }
 
         .panel-central h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             color: var(--blanco);
             margin-bottom: 0.5rem;
         }
 
         .panel-central p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--crema-claro);
-            line-height: 1.4;
+            line-height: 1.45;
         }
 
-        /* Tarjetas Específicas por Zona (Derecha o Izquierda) */
+        /* Tarjetas Específicas por Zona (Más transparentosas y con scroll interno si se expande) */
         .panel-zona {
             position: absolute;
             z-index: 20;
-            background: rgba(57, 37, 26, 0.82);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--blanco-crema);
+            background: rgba(57, 37, 26, 0.52);
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
+            border: 1.5px solid rgba(192, 166, 137, 0.75);
             border-radius: 16px;
-            padding: 1.4rem;
-            max-width: 380px;
-            width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            padding: 1.35rem;
+            max-width: 410px;
+            width: 90%;
+            max-height: 78vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
             display: none;
+            transition: all 0.3s ease;
         }
 
         .panel-zona.visible {
             display: block;
         }
 
+        /* Personalización sutil de barra de desplazamiento en los cuadros */
+        .panel-zona::-webkit-scrollbar {
+            width: 5px;
+        }
+        .panel-zona::-webkit-scrollbar-thumb {
+            background: var(--blanco-crema);
+            border-radius: 10px;
+        }
+
         /* Posicionamiento solicitado */
         .pos-derecha {
-            right: 5%;
+            right: 4%;
             top: 50%;
             transform: translateY(-50%);
         }
 
         .pos-izquierda {
-            left: 5%;
+            left: 4%;
             top: 50%;
             transform: translateY(-50%);
         }
 
         .panel-zona h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.28rem;
             color: var(--blanco);
             margin-bottom: 0.4rem;
         }
 
         .panel-zona p {
-            font-size: 0.82rem;
+            font-size: 0.83rem;
             color: var(--crema-claro);
-            line-height: 1.35;
-            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            margin-bottom: 0.85rem;
         }
 
-        /* Botón Conoce más y panel desplegable */
+        /* Botón Conoce más y panel desplegable enriquecido */
         .btn-conoce {
-            background: var(--vinotinto);
+            background: rgba(106, 30, 21, 0.9);
             color: var(--blanco);
             border: 1px solid var(--blanco-crema);
-            padding: 0.45rem 1rem;
+            padding: 0.45rem 1.05rem;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             font-weight: 700;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, color 0.3s;
             display: inline-block;
+            text-shadow: none;
         }
 
         .btn-conoce:hover {
@@ -257,16 +277,67 @@
 
         .info-detallada {
             display: none;
-            margin-top: 0.8rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid rgba(192, 166, 137, 0.3);
-            font-size: 0.78rem;
+            margin-top: 0.9rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(192, 166, 137, 0.45);
+            font-size: 0.8rem;
             color: var(--crema-claro);
-            line-height: 1.3;
+            line-height: 1.45;
         }
 
         .info-detallada.abierto {
             display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dato-clave {
+            background: rgba(37, 23, 15, 0.55);
+            border-left: 3px solid var(--blanco-crema);
+            padding: 0.55rem 0.75rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 0.65rem;
+        }
+
+        .dato-clave strong {
+            color: var(--blanco-crema);
+            display: block;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.15rem;
+        }
+
+        .lista-notas {
+            list-style: none;
+            margin: 0.5rem 0;
+        }
+
+        .lista-notas li {
+            margin-bottom: 0.4rem;
+            padding-left: 0.2rem;
+        }
+
+        .btn-accion-zona {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: var(--blanco-crema);
+            color: var(--cafe-oscuro);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 15px;
+            text-shadow: none;
+            transition: background 0.2s;
+        }
+
+        .btn-accion-zona:hover {
+            background: var(--blanco);
         }
 
         footer {
@@ -278,14 +349,14 @@
             z-index: 30;
         }
 
-        /* Adaptabilidad Perfecta para Tablets */
+        /* Adaptabilidad para Tablets y pantallas medianas */
         @media (max-width: 1024px) {
             .panel-zona {
-                max-width: 320px;
-                padding: 1rem;
+                max-width: 360px;
+                padding: 1.15rem;
             }
             .panel-central {
-                max-width: 450px;
+                max-width: 460px;
                 padding: 1.4rem;
             }
         }
@@ -295,7 +366,7 @@
 
     <header>
         <h1>solórzano</h1>
-        <p>Tour Interactivo 3D &bull; Finca Cafetera Quipile</p>
+        <p>Tour Interactivo &bull; Finca Cafetera Quipile</p>
     </header>
 
     <!-- Visor Principal de la Finca -->
@@ -313,19 +384,30 @@
 
         <!-- 0. Tarjeta Central Semitransparente (Vista General) -->
         <div class="panel-central" id="panelCentral">
-            <span class="panel-tag">📍 Vista General • Vereda Berlín, Quipile (1.810 msnm)[cite: 7, 68]</span>
+            <span class="panel-tag">📍 Vista General • Vereda Berlín, Quipile (1.810 msnm)</span>
             <h2>🏡 Finca Cafetera Café Solórzano</h2>
             <p>Bienvenido a nuestra casona tradicional. Haz clic en los pines flotantes de la imagen para hacer zoom y explorar cada área de producción artesanal.</p>
         </div>
 
         <!-- 1. Zona de Cultivo (Derecha en el medio) -->
         <div class="panel-zona pos-derecha" id="panelCultivo">
-            <span class="panel-tag">📍 Estación 1 • El Cielo del Tequendama[cite: 7]</span>
-            <h2>🍒 Zona de Cultivo (1.810 msnm)[cite: 7]</h2>
-            <p>Paisaje de cafetales rodeados de neblina matutina en la vereda Berlín. Altura ideal para garantizar origen único[cite: 7].</p>
+            <span class="panel-tag">📍 Estación 1 • El Cielo del Tequendama</span>
+            <h2>🍒 Zona de Cultivo (1.810 msnm)</h2>
+            <p>Cafetales de montaña abrazados por la neblina de la vereda Berlín. Aquí nace el carácter único del grano que tienes en tus manos.</p>
             <button class="btn-conoce" onclick="toggleDetalle('detCultivo', this)">Conoce más</button>
+            
             <div class="info-detallada" id="detCultivo">
-                🌱 Recolección manual y cuidadosa de granos maduros liderada por la familia de Don Jaime A. Solórzano[cite: 68, 74]. Apoyo al campo local con propósito[cite: 79].
+                <div class="dato-clave">
+                    <strong>⛰️ ¿Por qué importan los 1.810 m.s.n.m.?</strong>
+                    En la altura de Quipile (Cundinamarca), las noches frescas y los días templados hacen que la cereza del café madure más despacio, concentrando mayor dulzor natural y acidez equilibrada.
+                </div>
+                <div class="dato-clave">
+                    <strong>👨‍🌾 Cosecha Manual de Autor</strong>
+                    Bajo el cuidado de <strong>Don Jaime A. Solórzano</strong>, solo se recolectan a mano los frutos en su punto exacto de maduración roja, evitando granos verdes o pasados que amargan la taza.
+                </div>
+                <p style="margin-bottom: 0; font-size: 0.76rem; color: var(--blanco-crema);">
+                    ✓ Café 100% de origen único: sin mezclas industriales ni intermediarios.
+                </p>
             </div>
         </div>
 
@@ -333,32 +415,55 @@
         <div class="panel-zona pos-derecha" id="panelProceso">
             <span class="panel-tag">📍 Estación 2 • Beneficio y Tueste</span>
             <h2>⚙️ Zona de Proceso</h2>
-            <p>Área equipada para el despulpado, secado al sol y control de tueste con trazabilidad real[cite: 68].</p>
+            <p>Donde el fruto recién cosechado se transforma mediante secado cuidadoso y tueste medio-alto para revelar su perfil natural.</p>
             <button class="btn-conoce" onclick="toggleDetalle('detProceso', this)">Conoce más</button>
+            
             <div class="info-detallada" id="detProceso">
-                ✨ Aquí se desarrollan las notas sensoriales declaradas en nuestro empaque: Chocolate Blanco cremoso, Panela artesanal y un toque sutil de Vainilla[cite: 70, 80].
+                <div class="dato-clave">
+                    <strong>🎨 Notas Sensoriales Reales (Sin Saborizantes)</strong>
+                    Nuestro tueste artesanal resalta los atributos propios del grano de la finca:
+                    <ul class="lista-notas">
+                        <li>🍫 <strong>Chocolate blanco:</strong> textura cremosa y dulzor suave en boca.</li>
+                        <li>🍯 <strong>Panela artesanal:</strong> calidez dulce que recuerda a la tradición del campo.</li>
+                        <li>🍦 <strong>Vainilla:</strong> aroma envolvente y limpio desde que abres el empaque.</li>
+                    </ul>
+                </div>
+                <div class="dato-clave" style="margin-bottom: 0;">
+                    <strong>🛡️ Conserva su frescura en casa</strong>
+                    Mantén tu bolsa bien sellada en un lugar fresco, seco y lejos de olores fuertes (como especias o productos de aseo) para proteger sus aceites aromáticos.
+                </div>
             </div>
         </div>
 
         <!-- 3. Zona de Tomar Café (Izquierda en el medio) -->
         <div class="panel-zona pos-izquierda" id="panelTaza">
-            <span class="panel-tag">📍 Estación 3 • Pausa Consciente[cite: 21]</span>
+            <span class="panel-tag">📍 Estación 3 • Pausa Consciente</span>
             <h2>☕ Zona para Tomar Café</h2>
-            <p>Terraza mirador diseñada para disfrutar el producto final y vivir la experiencia del ritual matutino[cite: 74, 79].</p>
+            <p>El destino final del viaje: tu cocina u oficina. Un ritual sencillo para detener el afán del día y conectar con el campo.</p>
             <button class="btn-conoce" onclick="toggleDetalle('detTaza', this)">Conoce más</button>
+            
             <div class="info-detallada" id="detTaza">
-                🧘 Pensado para consumidores urbanos como Camilo que valoran el bienestar, huyen de la publicidad genérica y buscan calidad de finca a taza[cite: 68, 70, 79].
+                <div class="dato-clave">
+                    <strong>⏱️ Guía Rápida para tu Taza Perfecta</strong>
+                    Sin complicaciones ni jerga de barista:
+                    <ul class="lista-notas">
+                        <li><strong>1. Proporción:</strong> Usa 15 g de café (aprox. 2 cucharadas soperas) por cada 250 ml de agua pura.</li>
+                        <li><strong>2. Temperatura:</strong> Calienta el agua sin dejarla hervir a borbotones para no quemar las notas dulces.</li>
+                        <li><strong>3. Disfruta:</strong> Ideal para cafetera tradicional, filtro de papel o prensa francesa.</li>
+                    </ul>
+                </div>
+                <p style="margin-bottom: 0.5rem; font-size: 0.78rem;">¿Se te está acabando tu bolsa o quieres probar otro tueste?</p>
+                <a href="https://wa.me/573000000000?text=Hola,%20escaneé%20el%20QR%20de%20mi%20empaque%20Café%20Solórzano%20y%20quiero%20pedir%20más" class="btn-accion-zona" target="_blank">📲 Pedir directo a la finca (WhatsApp)</a>
             </div>
         </div>
 
     </main>
 
     <footer>
-        <p>Café Solórzano &bull; Trazabilidad real y origen único en el cielo del Tequendama[cite: 7, 68]</p>
+        <p>Café Solórzano &bull; Trazabilidad real y origen único en el cielo del Tequendama</p>
     </footer>
 
     <script>
-        // Configuración de las zonas y sus fondos exactos
         const zonas = [
             {
                 img: "Finca cafetera entre montañas verdes.png",
@@ -408,19 +513,21 @@
                 btnVolver.classList.add('visible');
             }
 
-            // Ocultar todos los paneles de zona y mostrar solo el activo
+            // Ocultar todos los paneles de zona y cerrar sus desplegables previos
             document.querySelectorAll('.panel-zona').forEach(p => p.classList.remove('visible'));
+            document.querySelectorAll('.info-detallada').forEach(d => d.classList.remove('abierto'));
+            document.querySelectorAll('.btn-conoce').forEach(b => b.textContent = "Conoce más");
+
             if (z.panelActivo) {
                 document.getElementById(z.panelActivo).classList.add('visible');
             }
         }
 
-        // Función para desplegar información al hacer clic en "Conoce más"
         function toggleDetalle(idDetalle, btn) {
             const detalle = document.getElementById(idDetalle);
             detalle.classList.toggle('abierto');
             if (detalle.classList.contains('abierto')) {
-                btn.textContent = "Ocultar";
+                btn.textContent = "Ocultar información";
             } else {
                 btn.textContent = "Conoce más";
             }
